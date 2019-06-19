@@ -48,4 +48,17 @@ class Point
     {
         return $this->y;
     }
+
+    /**
+     * @return int
+     */
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
+    public function isWalkableTo(Point $target): bool
+    {
+        return abs($target->getNumber() - $this->number) <= 1;
+    }
 }
