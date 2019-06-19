@@ -38,6 +38,10 @@ class Matrix
         throw new PointNotFoundException($x, $y);
     }
 
+    /**
+     * @param Point $point
+     * @return Point[]
+     */
     public function getSiblings(Point $point)
     {
         $siblingsCoordinates = [
@@ -78,5 +82,10 @@ class Matrix
         $centerY = ceil($maxY / 2);
 
         return $this->get($centerX, $centerY);
+    }
+
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

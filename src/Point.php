@@ -22,6 +22,11 @@ class Point
     private $number;
 
     /**
+     * @var bool
+     */
+    private $reachable = false;
+
+    /**
      * @param int $x
      * @param int $y
      * @param int $number
@@ -61,4 +66,16 @@ class Point
     {
         return abs($target->getNumber() - $this->number) <= 1;
     }
+
+    public function markReachable()
+    {
+        $this->reachable = true;
+    }
+
+    public function isReachable()
+    {
+        return $this->reachable;
+    }
+
+    
 }
