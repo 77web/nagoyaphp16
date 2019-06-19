@@ -30,7 +30,7 @@ class Matrix
     public function get(int $x, int $y): Point
     {
         foreach ($this->points as $point) {
-            if ($point->getX() === $x && $point->getY()) {
+            if ($point->getX() === $x && $point->getY() === $y) {
                 return $point;
             }
         }
@@ -59,5 +59,24 @@ class Matrix
         }
 
         return $siblings;
+    }
+
+    public function getCenter(): Point
+    {
+        $points = $this->points;
+        usort($points, function(Point $pointA, Point $pointB){
+            return $pointB->getX() > $pointA->getX() ? 1 : -1;
+        });
+        $maxX = reset($points)->getX();
+
+        usort($points, function(Point $pointA, Point $pointB){
+            return $pointB->getY() > $pointA->getY() ? 1 : -1;
+        });
+        $maxY = reset($points)->getY();
+
+        $centerX = ceil($maxX / 2);
+        $centerY = ceil($maxY / 2);
+
+        return $this->get($centerX, $centerY);
     }
 }

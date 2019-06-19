@@ -24,11 +24,18 @@ class MatrixTest extends TestCase
         $this->assertCount(3, $siblings, '左隣は存在しないので3件のみ');
     }
 
+    public function test_getCenter()
+    {
+        $actual = $this->getSUT()->getCenter();
+        $this->assertEquals(2, $actual->getX());
+        $this->assertEquals(2, $actual->getY());
+    }
+
     private function getSUT()
     {
         $points = [];
-        for ($x = 0; $x < 3; $x++) {
-            for ($y = 0; $y < 3; $y++) {
+        for ($x = 0; $x < 5; $x++) {
+            for ($y = 0; $y < 5; $y++) {
                 $points[] = new Point($x, $y, 0);
             }
         }
