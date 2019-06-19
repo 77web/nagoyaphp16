@@ -37,4 +37,27 @@ class Matrix
 
         throw new PointNotFoundException($x, $y);
     }
+
+    public function getSiblings(Point $point)
+    {
+        $siblingsCoordinates = [
+            [$point->getX(), $point->getY()-1], // 上
+            [$point->getX()-1, $point->getY()], // 左
+            [$point->getX()+1, $point->getY()], // 右
+            [$point->getX(), $point->getY()+1], // 下
+        ];
+
+        $siblings = [];
+        foreach ($siblingsCoordinates as $coordinate) {
+            $x = $coordinate[0];
+            $y = $coordinate[1];
+            try {
+                $siblings[] = $this->get($x, $y);
+            } catch (PointNotFoundException $e) {
+                // do nothing
+            }
+        }
+
+        return $siblings;
+    }
 }

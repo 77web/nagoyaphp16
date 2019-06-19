@@ -33,5 +33,19 @@ class Point
         $this->number = $number;
     }
 
+    /**
+     * @return int
+     */
+    public function getX(): int
+    {
+        return $this->x;
+    }
 
+    /**
+     * @return int
+     */
+    public function getY(): int
+    {
+        return $this->y;
+    }
 }
