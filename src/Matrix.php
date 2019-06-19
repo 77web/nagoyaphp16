@@ -88,4 +88,28 @@ class Matrix
     {
         return $this->points;
     }
+
+    public function getRows()
+    {
+        $rows = [];
+        foreach ($this->points as $point) {
+            if (!isset($rows[$point->getY()])) {
+                $rows[$point->getY()] = [];
+            }
+
+            $rows[$point->getY()][$point->getX()] = $point;
+        }
+
+        // 各行をX昇順に並べる
+        $rows = array_map(function($row){
+            ksort($row);
+
+            return $row;
+        }, $rows);
+
+        // 行をY昇順に並べる
+        ksort($rows);
+
+        return $rows;
+    }
 }

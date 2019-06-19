@@ -77,5 +77,8 @@ class Point
         return $this->reachable;
     }
 
-    
+    public function __toString()
+    {
+        return $this->reachable ? '*' : strval($this->number);
+    }
 }
