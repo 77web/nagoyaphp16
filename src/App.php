@@ -7,6 +7,11 @@ namespace Nagoya\Doukaku16;
 class App
 {
     /**
+     * @var MatrixFactory
+     */
+    private $matrixFactory;
+
+    /**
      * @var Walker
      */
     private $walker;
@@ -20,16 +25,29 @@ class App
      */
     public function __construct()
     {
+        $this->matrixFactory = new MatrixFactory();
         $this->walker = new Walker();
         $this->outputFormatter = new OutputFormatter();
     }
 
     public function run(string $input)
     {
-        $matrix = new Matrix([]);
+        $parsedInput = $this->parseInput($input);
+        $matrix = $this->matrixFactory->create($parsedInput);
 
         $this->walker->walk($matrix);
 
         return $this->outputFormatter->format($matrix);
+    }
+
+    private function parseInput(string $input)
+    {
+        $rows = [];
+        $lines = explode('/', $input);
+        foreach ($lines as $line) {
+            $rows[] = str_split($line);
+        }
+
+        return $rows;
     }
 }
