@@ -19,7 +19,7 @@ class WalkerTest extends TestCase
         $matrix = new Matrix($points);
 
         $walker = new Walker();
-        $walker->walk($matrix);
+        $walker->walk($matrix, $matrix->getCenter());
 
         $this->assertCount(9, array_filter($matrix->getPoints(), function(Point $point){ return $point->isReachable(); }));
     }
@@ -35,7 +35,7 @@ class WalkerTest extends TestCase
         $matrix = new Matrix($points);
 
         $walker = new Walker();
-        $walker->walk($matrix);
+        $walker->walk($matrix, $matrix->getCenter());
 
         $this->assertCount(3, array_filter($matrix->getPoints(), function(Point $point){ return $point->isReachable(); }));
     }
