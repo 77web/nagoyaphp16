@@ -35,7 +35,7 @@ class App
         $parsedInput = $this->parseInput($input);
         $matrix = $this->matrixFactory->create($parsedInput);
 
-        $this->walker->walk($matrix, $matrix->getCenter());
+        $this->walker->walk($matrix, $matrix->get(2, 0));
 
         return $this->outputFormatter->format($matrix);
     }
